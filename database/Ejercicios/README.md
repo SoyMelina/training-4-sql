@@ -88,3 +88,47 @@ ON users.id = orders.user_id
 GROUP BY users.name;
 Devuelve el total gastado por cada usuario.
 //---------------------------------------------------------------------
+11 - INSERT
+Permite crear nuevos registros en una tabla.
+Ejemplo:
+INSERT INTO users (name, email, status)
+VALUES ('Lucia', 'lucia@test.com', 'Activo');
+Agrega un nuevo usuario a la tabla users.
+//---------------------------------------------------------------------
+12 - UPDATE
+Permite modificar registros existentes.
+Ejemplo:
+UPDATE users
+SET status = 'Inactivo'
+WHERE name = 'Lucia';
+Actualiza el estado del usuario Lucia.
+Importante: siempre utilizar WHERE para evitar modificar todos los registros de la tabla.
+//---------------------------------------------------------------------
+13 - DELETE
+Permite eliminar registros de una tabla.
+Ejemplo:
+DELETE FROM users
+WHERE name = 'Lucia';
+Elimina el usuario Lucia de la tabla users.
+Importante: siempre utilizar WHERE para evitar eliminar todos los registros de la tabla.
+//---------------------------------------------------------------------
+14 - LEFT JOIN
+Permite obtener todos los registros de la tabla principal, incluso si no tienen coincidencias en la tabla relacionada.
+Ejemplo:
+SELECT users.name, orders.product
+FROM users
+LEFT JOIN orders
+ON users.id = orders.user_id;
+Devuelve todos los usuarios, incluyendo aquellos que no tienen pedidos asociados.
+//---------------------------------------------------------------------
+15 - LEFT JOIN + IS NULL
+Permite identificar registros que no tienen relación con otra tabla.
+Ejemplo:
+SELECT users.name
+FROM users
+LEFT JOIN orders
+ON users.id = orders.user_id
+WHERE orders.product IS NULL;
+Devuelve únicamente los usuarios que no tienen pedidos registrados.
+Este tipo de consulta es muy utilizada para detectar datos faltantes, inconsistencias o relaciones incompletas entre tablas.
+//---------------------------------------------------------------------
