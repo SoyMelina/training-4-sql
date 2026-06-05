@@ -132,3 +132,65 @@ WHERE orders.product IS NULL;
 Devuelve únicamente los usuarios que no tienen pedidos registrados.
 Este tipo de consulta es muy utilizada para detectar datos faltantes, inconsistencias o relaciones incompletas entre tablas.
 //---------------------------------------------------------------------
+16 - AVG()
+Permite calcular el promedio de una columna numérica.
+Ejemplo:
+SELECT AVG(price) as promedio
+FROM orders;
+Devuelve el valor promedio de los precios registrados en la tabla.
+//---------------------------------------------------------------------
+17 - MAX()
+Permite obtener el valor más alto de una columna.
+Ejemplo:
+SELECT MAX(price) as precio_maximo
+FROM orders;
+Devuelve el precio más alto registrado.
+//---------------------------------------------------------------------
+18 - MIN()
+Permite obtener el valor más bajo de una columna.
+Ejemplo:
+SELECT MIN(price) as precio_minimo
+FROM orders;
+Devuelve el precio más bajo registrado.
+//---------------------------------------------------------------------
+19 - HAVING
+Permite filtrar resultados agrupados después de aplicar GROUP BY.
+Ejemplo:
+SELECT users.name,
+       SUM(orders.price) as total_gastado
+FROM users
+JOIN orders
+ON users.id = orders.user_id
+GROUP BY users.name
+HAVING SUM(orders.price) > 100;
+Devuelve únicamente los usuarios cuyo total gastado supera los $100.
+Diferencia importante:
+WHERE filtra registros antes de agrupar.
+HAVING filtra grupos después de agrupar.
+//---------------------------------------------------------------------
+20 - DISTINCT
+Permite eliminar valores duplicados de una consulta.
+Ejemplo:
+SELECT DISTINCT status
+FROM users;
+Devuelve únicamente los valores únicos de la columna status.
+Resultado:
+Activo
+Inactivo
+Es útil para conocer los distintos estados, categorías o tipos existentes en una tabla sin repetir información.
+//---------------------------------------------------------------------
+21 - LIKE
+Permite realizar búsquedas parciales dentro de una columna de texto.
+Ejemplo:
+SELECT *
+FROM users
+WHERE name LIKE 'M%';
+Devuelve todos los usuarios cuyo nombre comienza con la letra M.
+Uso de comodines:
+LIKE 'M%'
+Empieza con M.
+LIKE '%a'
+Termina con a.
+LIKE '%li%'
+Contiene la secuencia "li".
+LIKE es muy utilizado para búsquedas, filtros y validaciones de datos en aplicaciones.
